@@ -1,7 +1,10 @@
 name: rvm-cassandra
-version: 0.0.2
+version: 0.0.3
 inherits: wercker/rvm@2.0.0
 type: service
 platform: ubuntu@12.04
 description: wercker/rvm box with cassandra
 script: ./provision
+env:
+  WERCKER_CASSANDRA_PORT: 9042
+  WERCKER_CASSANDRA_HOST: $$HOST$$

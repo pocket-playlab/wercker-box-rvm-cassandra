@@ -17,4 +17,3 @@ start on runlevel [2345]
 stop on starting rc RUNLEVEL=[016]
 exec /home/ubuntu/cassandra/${cassandra}/bin/cassandra -f
 UPSTART
-if ! sudo start cassandra; then echo 'cassandra might already be running'; fi
