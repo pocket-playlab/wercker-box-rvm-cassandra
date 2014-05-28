@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -e
+
+cassandra='apache-cassandra-2.0.7'
+mkdir -p ~/cassandra
+cd ~/cassandra
+if [ ! -e ${cassandra}-bin.tar.gz ]; then
+  wget "http://apache.mirrors.pair.com/cassandra/2.0.7/${cassandra}-bin.tar.gz"
+  tar xzf ${cassandra}-bin.tar.gz
+fi
+sudo mkdir -p /var/lib/cassandra
+sudo chown --recursive ubuntu:ubuntu /var/lib/cassandra
+cat << UPSTART | sudo tee /etc/init/cassandra.conf
+setgid ubuntu
+setuid ubuntu
+start on runlevel [2345]
+stop on starting rc RUNLEVEL=[016]
+exec /home/ubuntu/cassandra/${cassandra}/bin/cassandra -f
+UPSTART

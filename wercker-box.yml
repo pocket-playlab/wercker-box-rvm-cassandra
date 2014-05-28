@@ -1,0 +1,7 @@
+name: rvm-cassandra
+version: 0.0.1
+inherits: wercker/rvm
+type: service
+platform: ubuntu@12.04
+description: wercker/rvm box with cassandra
+script: ./provision
